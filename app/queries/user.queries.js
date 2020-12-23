@@ -1,4 +1,4 @@
-const { Users } = require("../models");
+const { Users, Files } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 
 //request create user with save() and create object instance for Users
@@ -66,6 +66,6 @@ exports.changeOneValueForUser = async (changeValue, req) => {
     if (!user) throw new Error(`cannot update ${changeValue}, user does not exis or an error has occurred`);
     return user;
   } catch (e) {
-    next(e);
+    return e;
   }
 };

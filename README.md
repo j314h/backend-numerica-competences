@@ -74,6 +74,7 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 | `extractUserFromToken`                 | jwt.conf.js    | extracts the user once the token is assigned                                     |
 | `addJwtFeatures`                       | jwt.conf.js    | create feature for jwt                                                           |
 | `error`                                | error.conf.js  | get the errors on the routes, and send the error back to the front               |
+| `upload`                               | multer.js      | instance multer for upload file                                                  |
 |                                        |                |                                                                                  |
 
 ### NOTES

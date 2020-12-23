@@ -11,3 +11,4 @@ exports.GlobalTexts = require("./GlobalTexts");
 exports.BusinessAcquiredSkills = require("./BusinessAcquiredSkills");
 exports.BusinessRequiredSkills = require("./BusinessRequiredSkills");
 exports.ApiRome = require("./ApiRome");
+exports.Files = require("./Files");

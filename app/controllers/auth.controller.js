@@ -85,6 +85,7 @@ const authController = {
     }
   },
 
+  //juste check user connected, after reload navigator for continue use this app
   redirectConnect: async (req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {

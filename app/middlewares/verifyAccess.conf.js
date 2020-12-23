@@ -15,7 +15,7 @@ exports.verifUserConnect = (req, res, next) => {
   }
 };
 
-//middle virification root, admin user connected
+//middle virification root user connected
 exports.verifUserAccesRoot = (req, res, next) => {
   try {
     if (req.user.role.libelle !== "root") throw new Error("You don't have permission, minimum level required 'root'");
