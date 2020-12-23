@@ -57,7 +57,8 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 | ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
 | UPLOAD                                    |                          |                                                        |              |                     |                                                                            |
 | ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
-| _upload img log numerica_                 | `/file/logo-numerica`    | -                                                      | POST         | Connected, admin    | verifUserRoot ,verifUserConnect                                            |
+| _upload img log numerica_                 | `/file/logo-numerica`    | FormData with clef "logoNumerica"                      | POST         | Connected, admin    | verifUserRoot ,verifUserConnect                                            |
+| _get all files img_                       | `/files-i`               | -                                                      | GET          | connected           | verifUserConnect                                                           |
 |                                           |                          |                                                        |              |                     |                                                                            |
 
 ## Features

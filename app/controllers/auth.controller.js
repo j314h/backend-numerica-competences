@@ -11,8 +11,8 @@ const authController = {
   accessTokenApiRome: async (req, res, next) => {
     try {
       const token = await axios.post(ApiRome.url, qs.stringify(ApiRome.data), ApiRome.header);
-      res.status(200).json({ tokenApiRome: token.data.access_token });
       console.log("Token api rome send");
+      res.status(200).json({ tokenApiRome: token.data.access_token });
     } catch (e) {
       req.errorMessage = "Error access token api rome";
       next(e);
@@ -40,8 +40,8 @@ const authController = {
           },
         });
       }
-      res.status(200).json(user);
       console.log("CreateUser OK");
+      res.status(200).json(user);
     } catch (e) {
       req.errorMessage = "Error create user";
       next(e);
@@ -63,8 +63,8 @@ const authController = {
       //destructuring for switch pwd
       const { pwd, ...newUser } = user._doc;
       req.login(user);
-      res.status(200).json(newUser);
       console.log("sign in ok");
+      res.status(200).json(newUser);
     } catch (e) {
       req.errorMessage = "Error sign in user";
       next(e);
@@ -77,8 +77,8 @@ const authController = {
       //delete jwt
       req.logout();
       //send response good and state connexion
-      res.status(200).json({ connextion: false });
       console.log("logout is ok");
+      res.status(200).json({ connextion: false });
     } catch (e) {
       req.errorMessage = "Error logout user";
       next(e);
@@ -96,8 +96,8 @@ const authController = {
         //destructuring for switch pwd
         const { pwd, ...newUser } = user._doc;
         req.login(user);
-        res.status(200).json(newUser);
         console.log("redirect connect ok");
+        res.status(200).json(newUser);
       } catch (e) {
         req.errorMessage = "Error user not found";
         next(e);

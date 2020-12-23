@@ -1,16 +1,16 @@
-const { States, Users } = require('../models');
-const { testUserForDelete, changeOneValueForUser } = require('../queries/user.queries');
+const { States, Users } = require("../models");
+const { testUserForDelete, changeOneValueForUser } = require("../queries/user.queries");
 
 const userController = {
   //get user
   getUser: async (req, res, next) => {
     try {
       const user = await Users.findById({ _id: req.params.id });
-      if (!user) throw new Error('User no found');
+      if (!user) throw new Error("User no found");
+      console.log("get user ok");
       res.status(200).json(user);
-      console.log('get user ok');
     } catch (e) {
-      req.errorMessage = 'Error get user';
+      req.errorMessage = "Error get user";
       next(e);
     }
   },
@@ -23,10 +23,10 @@ const userController = {
       testUserForDelete(user, req);
       //it's ok ? delete user
       user.delete();
-      res.status(200).json({ message: 'successful operation delete' });
-      console.log('delete user ok');
+      console.log("delete user ok");
+      res.status(200).json({ message: "successful operation delete" });
     } catch (e) {
-      req.errorMessage = 'Error delete user';
+      req.errorMessage = "Error delete user";
       next(e);
     }
   },
@@ -34,11 +34,11 @@ const userController = {
   //change role user
   changeRole: async (req, res, next) => {
     try {
-      const user = await changeOneValueForUser('role', req);
+      const user = await changeOneValueForUser("role", req);
+      console.log("update role user ok");
       res.status(200).json(user);
-      console.log('update role user ok');
     } catch (e) {
-      req.errorMessage = 'Error update user for role';
+      req.errorMessage = "Error update user for role";
       next(e);
     }
   },
@@ -46,11 +46,11 @@ const userController = {
   //change state user
   changeState: async (req, res, next) => {
     try {
-      const user = await changeOneValueForUser('state', req);
+      const user = await changeOneValueForUser("state", req);
+      console.log("update state user ok");
       res.status(200).json(user);
-      console.log('update state user ok');
     } catch (e) {
-      req.errorMessage = 'Error update user for state';
+      req.errorMessage = "Error update user for state";
       next(e);
       Users.find;
     }

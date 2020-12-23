@@ -59,5 +59,6 @@ router.post(
   upload.single("logoNumerica"),
   uploadController.uploadLogoNumerica
 );
+router.get("/files-i", verifUserConnect, uploadController.allFilesImg);
 
 module.exports = router;
