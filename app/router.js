@@ -59,6 +59,22 @@ router.post(
   upload.single("logoNumerica"),
   uploadController.uploadLogoNumerica
 );
+router.post(
+  "/file/logo-identifiant",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoIdentifiant"),
+  uploadController.uploadLogoIdentifiant
+);
+router.post(
+  "/file/logo-menu",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoMenu"),
+  uploadController.uploadLogoMenu
+);
+
+//get all image for app
 router.get("/files-i", uploadController.allFilesImg);
 
 module.exports = router;

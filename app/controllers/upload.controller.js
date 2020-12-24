@@ -26,6 +26,32 @@ const uploadController = {
       next(e);
     }
   },
+
+  //upload img logo identifiant
+  uploadLogoIdentifiant: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo identifiant is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
+
+  //upload img logo menu
+  uploadLogoMenu: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo menu is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
 };
 
 module.exports = uploadController;
