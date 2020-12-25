@@ -5,6 +5,7 @@ const authController = require("./controllers/auth.controller");
 const userController = require("./controllers/user.controller");
 const globalController = require("./controllers/global.controller");
 const uploadController = require("./controllers/upload.controller");
+const themesColorsController = require("./controllers/themesColors.controller");
 
 //middleware verify
 const {
@@ -73,8 +74,11 @@ router.post(
   upload.single("logoMenu"),
   uploadController.uploadLogoMenu
 );
-
 //get all image for app
 router.get("/files-i", uploadController.allFilesImg);
+
+//param app of color
+router.get("/themes-colors", themesColorsController.getAllThemesColors);
+router.post("/cu-theme-color", verifUserConnect, themesColorsController.createOrUpdateThemeColor);
 
 module.exports = router;

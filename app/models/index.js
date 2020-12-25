@@ -12,3 +12,4 @@ exports.BusinessAcquiredSkills = require("./BusinessAcquiredSkills");
 exports.BusinessRequiredSkills = require("./BusinessRequiredSkills");
 exports.ApiRome = require("./ApiRome");
 exports.Files = require("./Files");
+exports.ThemesColors = require("./ThemesColors");

@@ -9,7 +9,7 @@ exports.changeOrCreateValueForFile = async (req) => {
       { name: req.file.fieldname, fieldName: req.file.filename, src: req.file.path },
       { useFindAndModify: false, new: true, upsert: true }
     );
-    if (!file) throw new Error(`cannot update fieldName and src, user does not exis or an error has occurred`);
+    if (!file) throw new Error(`Unable to update this file, an error has occurred`);
     return file;
   } catch (e) {
     return e;
