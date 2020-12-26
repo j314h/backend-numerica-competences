@@ -3,7 +3,7 @@ const { ThemesColors } = require("../models");
 //function for create ou update document theme color in database
 exports.createOrUpdateThemeColor = async (req) => {
   try {
-    const themeColor = await ThemesColors.findByIdAndUpdate(
+    const themeColor = await ThemesColors.findOneAndUpdate(
       { name: req.user.email },
       {
         name: req.user.email,
