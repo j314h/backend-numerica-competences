@@ -1,5 +1,4 @@
-const { Users } = require("../models");
-const { createOrUpdateThemeColor } = require("../queries/themeColor.queries");
+const { Users, ThemesColors } = require("../models");
 
 const themesColorsController = {
   //get all themes colors
@@ -9,7 +8,7 @@ const themesColorsController = {
   createOrUpdateThemeColor: async (req, res, next) => {
     try {
       //create or update this theme color
-      const newThemeColor = await createOrUpdateThemeColor(req);
+      const newThemeColor = await ThemesColors.findOne({ name: req.body.name });
       if (!newThemeColor) throw new Error("An error has occured during the update ");
       //update user for theme color key
       const user = await Users.findByIdAndUpdate(
