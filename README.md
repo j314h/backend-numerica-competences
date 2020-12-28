@@ -31,35 +31,32 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 
 ## Roads
 
-| ROADS                                     | libelle                  | settings for request                                   | type request | verified acces user | middleware                                                                 |
-| ----------------------------------------- | ------------------------ | ------------------------------------------------------ | ------------ | ------------------- | -------------------------------------------------------------------------- |
-| GLOBAL                                    |                          |                                                        |              |                     |                                                                            |
-| ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
-| _Get all roles_                           | `/roles`                 | -                                                      | GET          | Connected admin     | verifUserConnect, verifUserAccesAmin                                       |
-| _Get all states_                          | `/states`                | -                                                      | GET          | Connected admin     | verifUserConnect, verifUserAccesAmin                                       |
-| _recover the token from the api rome_     | `/access-token-api-rome` | parameter in model APIRome.js                          | GET          | Connected referent  | verifUserConnect, verifUserAccesReferent                                   |
-|                                           |                          |                                                        |              |                     |                                                                            |
-|                                           |                          |                                                        |              |                     |                                                                            |
-|                                           |                          |                                                        |              |                     |                                                                            |
-| ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
-| USER                                      |                          |                                                        |              |                     |                                                                            |
-| ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
-| _Disconnect user_                         | `/sign-out`              | -                                                      | GET          | Connected           | verifUserConnect                                                           |
-| _Connect user_                            | `/sign-in`               | email, password                                        | POST         | -                   | -                                                                          |
-| _Create user (no connection to creation)_ | `/sign-up`               | firstName, lastName, email, role is required           | POST         | Connected, admin    | verifUserConnect, verifUserAccesReferent, createUserHigtLevel              |
-| _Get user with id_                        | `/user/:id`              | \_id => user                                           | GET          | Connected, admin    | verifUserConnect, verifUserAccesReferent,                                  |
-| _Delete user_                             | `/user/:id`              | \_id => user                                           | Delete       | Connected, admin    | verifUserConnect, verifUserAccesAmin                                       |
-| _Update state this user_                  | `/changestate-user`      | idUser, idState                                        | Patch        | Connected, admin    | verifUserConnect, verifUserAccesAmin, changeStateHigtLevelForUserHigtLevel |
-| _Update role this user_                   | `/changerole-user`       | idUser, idRole                                         | Patch        | Connected, admin    | verifUserConnect, verifUserAccesAmin, createUserHigtLevel                  |
-|                                           |                          |                                                        |              |                     |                                                                            |
-|                                           |                          |                                                        |              |                     |                                                                            |
-|                                           |                          |                                                        |              |                     |                                                                            |
-| ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
-| UPLOAD                                    |                          |                                                        |              |                     |                                                                            |
-| ---------------------------------------   | ----------------------   | ------------------------------------------------------ | ------------ | ------------------- | ----------                                                                 |
-| _upload img log numerica_                 | `/file/logo-numerica`    | FormData with clef "logoNumerica"                      | POST         | Connected, admin    | verifUserRoot ,verifUserConnect                                            |
-| _get all files img_                       | `/files-i`               | -                                                      | GET          | connected           | verifUserConnect                                                           |
-|                                           |                          |                                                        |              |                     |                                                                            |
+| ROADS                                     | libelle                  | settings for request                         | type request |
+| ----------------------------------------- | ------------------------ | -------------------------------------------- | ------------ |
+| GLOBAL                                    | -                        | -                                            | -            |
+| _Get all roles_                           | `/roles`                 | -                                            | GET          |
+| _Get all states_                          | `/states`                | -                                            | GET          |
+| _recover the token from the api rome_     | `/access-token-api-rome` | parameter in model APIRome.js                | GET          |
+|                                           |                          |                                              |              |
+| USER                                      | -                        | -                                            | -            |
+| _Disconnect user_                         | `/sign-out`              | -                                            | GET          |
+| _Connect user_                            | `/sign-in`               | email, password                              | POST         |
+| _Create user (no connection to creation)_ | `/sign-up`               | firstName, lastName, email, role is required | POST         |
+| _Get user with id_                        | `/user/:id`              | \_id => user                                 | GET          |
+| _Delete user_                             | `/user/:id`              | \_id => user                                 | Delete       |
+| _Update state this user_                  | `/changestate-user`      | idUser, idState                              | Patch        |
+| _Update role this user_                   | `/changerole-user`       | idUser, idRole                               | Patch        |
+|                                           |                          |                                              |              |
+| UPLOAD                                    | -                        | -                                            | -            |
+| _upload img log numerica_                 | `/file/logo-numerica`    | FormData with clef "logoNumerica"            | POST         |
+| _get all files img_                       | `/files-i`               | -                                            | GET          |
+| _upload img log identifiant_              | `/file/logo-identifiant` | FormData with clef "logoIdentifiant"         | POST         |
+| _upload img log menu_                     | `/file/logo-menu`        | FormData with clef "logoMenu"                | POST         |
+|                                           |                          |                                              |              |
+| THEMECOLOR                                | -                        | -                                            | -            |
+| _choice mode dark or not_                 | `cu-theme-color`         | name                                         | POST         |
+| _get all themeColors_                     | `themes-colors`          | -                                            | GET          |
+|                                           |                          |                                              |              |
 
 ## Features
 
