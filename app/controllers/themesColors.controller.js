@@ -4,13 +4,13 @@ const themesColorsController = {
   //get all themes colors
   getAllThemesColors: (req, res, next) => {},
 
-  //create or update theme color related to user login
-  createOrUpdateThemeColor: async (req, res, next) => {
+  //activate or desactivate dark mode
+  activateOrDesactivateDarkMode: async (req, res, next) => {
     try {
-      //create or update this theme color
+      //recover mode user selected in front
       const newThemeColor = await ThemesColors.findOne({ name: req.body.name });
       if (!newThemeColor) throw new Error("An error has occured during the update ");
-      //update user for theme color key
+      //update user with _id theme selected by user in front
       const user = await Users.findByIdAndUpdate(
         { _id: req.user._id },
         { themeColor: newThemeColor._id },

@@ -78,7 +78,7 @@ router.post(
 router.get("/files-i", uploadController.allFilesImg);
 
 //param app of color
-router.get("/themes-colors", themesColorsController.getAllThemesColors);
-router.post("/cu-theme-color", verifUserConnect, themesColorsController.createOrUpdateThemeColor);
+router.get("/themes-colors", themesColorsController.getAllThemesColors); //no active
+router.post("/cu-theme-color", verifUserConnect, themesColorsController.activateOrDesactivateDarkMode);
 
 module.exports = router;

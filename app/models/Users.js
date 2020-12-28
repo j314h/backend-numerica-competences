@@ -31,7 +31,7 @@ const userSchema = Schema(
       type: Schema.Types.ObjectId,
       autopopulate: true,
       ref: "themes_colors",
-      default: "5fe63755f99bceafba15b55c",
+      default: "5fe7abf1c0829974e2fae222", // mode normal
     },
     trade: { type: Schema.Types.ObjectId, autopopulate: true, ref: "trades" },
     leader: { type: Schema.Types.ObjectId, autopopulate: true, ref: "users" },
@@ -41,7 +41,7 @@ const userSchema = Schema(
       autopopulate: true,
       required: true,
       ref: "states",
-      default: "5fd1e209d9419ef54a0a1bc0",
+      default: "5fd1e209d9419ef54a0a1bc0", // state actif
     },
   },
   {
