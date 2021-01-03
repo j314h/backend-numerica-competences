@@ -32,7 +32,6 @@ exports.createUser = async (req) => {
     //mongoose detects duplicates on its own and returns an error
     return newUser.save();
   } catch (error) {
-    console.log("create user queries", error.message);
     throw error;
   }
 };
@@ -70,11 +69,21 @@ exports.changeOneValueForUser = async (changeValue, req) => {
   }
 };
 
-exports.updateUser = async (req) => {
+//update user root admin referent
+exports.updateUserRefMin = async (req) => {
   try {
-    if (req.body.password) {
+    //if password is define, a test is build on password, if error throw error
+    if (req.body.password && req.body.passwordOld) {
+      const user = await Users.findById({ _id: req.user._id });
+      const password = await user.comparePassword(req.body.passwordOld);
+      if (!password) throw new Error("Password is not good");
+      req.body.password = await Users.hashPassword(req.body.password);
+      if (req.body.password.name === "Error") throw new Error("Hash password is not possible");
     }
+    //if role exist in body request, recover role in database
+    //or if role is not define, recover old role this user
     const role = req.body.role ? await Roles.findOne({ libelle: req.body.role }) : req.user.role;
+    //update user
     const user = await Users.findByIdAndUpdate(
       { _id: req.user._id },
       {
@@ -95,6 +104,8 @@ exports.updateUser = async (req) => {
       },
       { useFindAndModify: false, new: true }
     );
+    //if user not exist throw eror
+    if (user.name === "Error") throw new Error("User is not update");
     return user;
   } catch (e) {
     return e;

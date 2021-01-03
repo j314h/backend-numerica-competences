@@ -43,7 +43,7 @@ router.patch(
   createUserHigtLevelRole,
   userController.changeRole
 );
-router.post("/update-user-root", verifUserConnect, userController.updateUser);
+router.post("/update-user-root", verifUserConnect, userController.updateUserRootAdminRef);
 router.delete("/user/:id", verifUserConnect, verifUserAccesAmin, userController.deleteUser);
 
 //roads for globals data

@@ -1,5 +1,5 @@
 const { States, Users } = require("../models");
-const { testUserForDelete, changeOneValueForUser, updateUser } = require("../queries/user.queries");
+const { testUserForDelete, changeOneValueForUser, updateUserRefMin } = require("../queries/user.queries");
 
 const userController = {
   //get user
@@ -55,14 +55,18 @@ const userController = {
     }
   },
 
-  //update user
-  updateUser: async (req, res, next) => {
+  //update user root admin referent
+  updateUserRootAdminRef: async (req, res, next) => {
     try {
-      const user = await updateUser(req);
+      const user = await updateUserRefMin(req);
+      //if update user is not good throw error
+      if (user.name === "Error") throw new Error(user.message);
       console.log("update user ok");
+      //if user update is good
+      req.login(user);
       res.status(200).json(user);
     } catch (e) {
-      req.errorMessage = "Error update user for state";
+      req.errorMessage = "Error update user";
       next(e);
     }
   },

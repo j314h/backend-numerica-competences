@@ -12,5 +12,5 @@ exports.error = (err, req, res, next) => {
     myError: req.errorMessage,
     stack: err.stack,
   };
-  process.env.NODE_ENV === "production" ? res.status(500).json({ errProd }) : res.status(500).json(errDev);
+  process.env.NODE_ENV === "production" ? res.status(500).json({ errProd }) : res.status(400).json(errDev);
 };
