@@ -27,7 +27,7 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
     - execute the following command `npm start`
       > if you have encountered any errors at this time, you have executed a command incorrectly or you have placed the commands in the wrong place  
       > or your database is not started or exist  
-      > for the problems of your database, contact the webmaster
+      > for the problems of your database contact the webmaster
 
 ## Roads
 
