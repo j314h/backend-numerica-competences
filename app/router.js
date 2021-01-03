@@ -43,6 +43,7 @@ router.patch(
   createUserHigtLevelRole,
   userController.changeRole
 );
+router.post("/update-user-root", verifUserConnect, userController.updateUser);
 router.delete("/user/:id", verifUserConnect, verifUserAccesAmin, userController.deleteUser);
 
 //roads for globals data
@@ -74,6 +75,28 @@ router.post(
   upload.single("logoMenu"),
   uploadController.uploadLogoMenu
 );
+router.post(
+  "/file/logo-numerica-footer",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoFooterNumerica"),
+  uploadController.uploadLogoNumericaFooter
+);
+router.post(
+  "/file/logo-update-element",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoUpdateElement"),
+  uploadController.uploadlogoUpdateElement
+);
+router.post(
+  "/file/logo-close-update-element",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoCloseUpdateElement"),
+  uploadController.uploadlogoCloseUpdateElement
+);
+
 //get all image for app
 router.get("/files-i", uploadController.allFilesImg);
 

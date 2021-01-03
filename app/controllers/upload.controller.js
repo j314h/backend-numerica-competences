@@ -45,7 +45,47 @@ const uploadController = {
     try {
       //update or create file
       const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("uploadLogoMenu: ~ fileUpdate", fileUpdate);
       console.log("Create or update logo menu is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
+
+  //upload img logo numerica
+  uploadLogoNumericaFooter: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo numerica footer is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
+
+  //upload img update element
+  uploadlogoUpdateElement: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo update element is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
+
+  //upload logo close update element
+  uploadlogoCloseUpdateElement: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo close update element is ok");
       res.status(200).json(fileUpdate);
     } catch (e) {
       req.errorMessage = "Update or create field image error";

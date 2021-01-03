@@ -1,5 +1,5 @@
 const { States, Users } = require("../models");
-const { testUserForDelete, changeOneValueForUser } = require("../queries/user.queries");
+const { testUserForDelete, changeOneValueForUser, updateUser } = require("../queries/user.queries");
 
 const userController = {
   //get user
@@ -52,7 +52,18 @@ const userController = {
     } catch (e) {
       req.errorMessage = "Error update user for state";
       next(e);
-      Users.find;
+    }
+  },
+
+  //update user
+  updateUser: async (req, res, next) => {
+    try {
+      const user = await updateUser(req);
+      console.log("update user ok");
+      res.status(200).json(user);
+    } catch (e) {
+      req.errorMessage = "Error update user for state";
+      next(e);
     }
   },
 };

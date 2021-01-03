@@ -1,4 +1,4 @@
-const { Users, Files } = require("../models");
+const { Users, Files, Roles } = require("../models");
 const { v4: uuidv4 } = require("uuid");
 
 //request create user with save() and create object instance for Users
@@ -64,6 +64,37 @@ exports.changeOneValueForUser = async (changeValue, req) => {
       { useFindAndModify: false, new: true }
     );
     if (!user) throw new Error(`cannot update ${changeValue}, user does not exis or an error has occurred`);
+    return user;
+  } catch (e) {
+    return e;
+  }
+};
+
+exports.updateUser = async (req) => {
+  try {
+    if (req.body.password) {
+    }
+    const role = req.body.role ? await Roles.findOne({ libelle: req.body.role }) : req.user.role;
+    const user = await Users.findByIdAndUpdate(
+      { _id: req.user._id },
+      {
+        name: {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+        },
+        address: {
+          street: req.body.street,
+          postCode: req.body.postCode,
+          city: req.body.city,
+        },
+        email: req.body.email,
+        pwd: req.body.password || req.user.pwd, //here this password is not define, it will be defined in the validation route of the user
+        role: role._id,
+        registerNumber: req.body.registerNumber || req.user.registerNumber,
+        phoneNumber: req.body.phoneNumber,
+      },
+      { useFindAndModify: false, new: true }
+    );
     return user;
   } catch (e) {
     return e;
