@@ -46,6 +46,9 @@ router.patch(
 router.post("/update-user-root", verifUserConnect, userController.updateUserRootAdminRef);
 router.delete("/user/:id", verifUserConnect, verifUserAccesAmin, userController.deleteUser);
 
+//update or create companies
+router.post("/update-company-user", verifUserConnect, verifUserAccesReferent, userController.updateCompanyForUser);
+
 //roads for globals data
 router.get("/roles", verifUserConnect, verifUserAccesAmin, globalController.getAllRoles);
 router.get("/states", verifUserConnect, verifUserAccesAmin, globalController.getAllStates);

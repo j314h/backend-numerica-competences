@@ -1,4 +1,4 @@
-const { States, Users } = require("../models");
+const { States, Users, Companies } = require("../models");
 const { testUserForDelete, changeOneValueForUser, updateUserRefMin } = require("../queries/user.queries");
 
 const userController = {
@@ -67,6 +67,45 @@ const userController = {
       res.status(200).json(user);
     } catch (e) {
       req.errorMessage = "Error update user";
+      next(e);
+    }
+  },
+
+  //update companies for user root administrateur referent
+  updateCompanyForUser: async (req, res, next) => {
+    try {
+      //recover company and update there info
+      const company = await Companies.findOneAndUpdate(
+        { siret: req.body.siret },
+        {
+          name: req.body.name,
+          address: {
+            street: req.body.street,
+            postCode: req.body.postCode,
+            city: req.body.city,
+          },
+          filliale: req.body.filliale,
+          siret: req.body.siret,
+          naf: req.body.naf,
+          phoneNumber: req.body.phoneNumber,
+        },
+        { useFindAndModify: false, new: true }
+      );
+      //company is not define
+      if (company.name === "Error") throw new Error("Company is not found");
+      //recover user and update id for new company
+      const user = await Users.findOneAndUpdate(
+        { email: req.body.email },
+        { company: company._id },
+        { useFindAndModify: false, new: true }
+      );
+      //user is note define
+      if (user.name === "Error") throw new Error("User is not found");
+      //if user update is good
+      req.login(user);
+      res.status(200).json(user);
+    } catch (e) {
+      req.errorMessage = "Error update company of user";
       next(e);
     }
   },

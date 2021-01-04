@@ -5,7 +5,7 @@ const companySchema = Schema(
   {
     name: String,
     filliale: String,
-    siret: String,
+    siret: { type: String, required: true, unique: true },
     naf: String,
     phoneNumber: String,
     address: {
