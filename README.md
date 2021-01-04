@@ -20,7 +20,7 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 
   > install [Nodejs](https://nodejs.org/en/) and follow the following instructions
 
-  - before continuing, you must create a '.env' file, copy paste the contents of the '.env.example' file to fill the file
+  - before continuing you must create a '.env' file, copy paste the contents of the '.env.example' file to fill the file
     - open a terminal
     - go in project 'backend-numerica-competence'
     - execute the following command `npm i`
