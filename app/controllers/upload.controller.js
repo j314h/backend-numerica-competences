@@ -92,6 +92,45 @@ const uploadController = {
       next(e);
     }
   },
+
+  //upload logo setting
+  uploadlogoSetting: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo setting is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
+
+  //upload logo deconnect
+  uploadlogoDeconnect: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo deconnect is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
+
+  //upload logo deconnect
+  uploadlogoDashbord: async (req, res, next) => {
+    try {
+      //update or create file
+      const fileUpdate = await changeOrCreateValueForFile(req);
+      console.log("Create or update logo dashbord is ok");
+      res.status(200).json(fileUpdate);
+    } catch (e) {
+      req.errorMessage = "Update or create field image error";
+      next(e);
+    }
+  },
 };
 
 module.exports = uploadController;

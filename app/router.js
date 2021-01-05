@@ -99,6 +99,27 @@ router.post(
   upload.single("logoCloseUpdateElement"),
   uploadController.uploadlogoCloseUpdateElement
 );
+router.post(
+  "/file/logo-setting",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoSetting"),
+  uploadController.uploadlogoSetting
+);
+router.post(
+  "/file/logo-deconnect",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoDeconnect"),
+  uploadController.uploadlogoDeconnect
+);
+router.post(
+  "/file/logo-dashbord",
+  verifUserConnect,
+  verifUserAccesRoot,
+  upload.single("logoDashbord"),
+  uploadController.uploadlogoDashbord
+);
 
 //get all image for app
 router.get("/files-i", uploadController.allFilesImg);
