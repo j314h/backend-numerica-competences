@@ -15,6 +15,7 @@ const themesColorsSchema = Schema(
     btnm: String,
     bgContent: String,
     darkMode: Boolean,
+    colorTextImportant: String,
   },
   {
     timestamps: true,
