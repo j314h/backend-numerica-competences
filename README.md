@@ -77,4 +77,4 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 
 ### NOTES
 
-- in road /sign-up => user is create but not validate email for verification send at user for config password.
+- in road /sign-up => user is create but not validate, email for verification send at user for config password.
