@@ -48,6 +48,7 @@ router.delete("/user/:id", verifUserConnect, verifUserAccesAmin, userController.
 
 //update or create companies
 router.post("/update-company-user", verifUserConnect, verifUserAccesReferent, userController.updateCompanyForUser);
+router.post("/create-company", verifUserConnect, verifUserAccesAmin, globalController.createCompany);
 
 //roads for globals data
 router.get("/roles", verifUserConnect, verifUserAccesAmin, globalController.getAllRoles);

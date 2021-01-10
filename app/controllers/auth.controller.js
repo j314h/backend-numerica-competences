@@ -51,8 +51,8 @@ const authController = {
   //connect user
   signIn: async (req, res, next) => {
     try {
-      //test user exist else throw error
       const user = await findUserPerEmail(req.body.email);
+      //test user exist else throw error
       if (!user) throw new Error("User not found");
       //compare password with password user in bdd else trhow error
       const testPassword = await user.comparePassword(req.body.password);
@@ -61,10 +61,10 @@ const authController = {
       if (user.state.libelle !== "actif") throw new Error("You don't have permission to connect");
       //if not error
       //destructuring for switch pwd
-      const { pwd, ...newUser } = user._doc;
+      //const { pwd, ...newUser } = user._doc;
       req.login(user);
       console.log("sign in ok");
-      res.status(200).json(newUser);
+      res.status(200).json(user);
     } catch (e) {
       req.errorMessage = "Error sign in user";
       next(e);
@@ -94,10 +94,11 @@ const authController = {
         const user = await Users.findById(verifJwt.sub);
         if (!user) throw new Error("User not found");
         //destructuring for switch pwd
-        const { pwd, ...newUser } = user._doc;
+        //const { pwd, ...newUser } = user._doc;
         req.login(user);
+        console.log("redirectConnect: ~ user", user);
         console.log("redirect connect ok");
-        res.status(200).json(newUser);
+        res.status(200).json(user);
       } catch (e) {
         req.errorMessage = "Error user not found";
         next(e);

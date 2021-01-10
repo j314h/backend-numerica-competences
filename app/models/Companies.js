@@ -5,14 +5,10 @@ const companySchema = Schema(
   {
     name: String,
     filliale: String,
-    siret: { type: String, required: true, unique: true },
+    siret: { type: String },
     naf: String,
     phoneNumber: String,
-    address: {
-      street: String,
-      postCode: String,
-      city: String,
-    },
+    address: { type: Object, street: String, postCode: String, city: { type: String }, required: true, unique: true },
     state: { type: Schema.Types.ObjectId, ref: "states", autopopulate: true },
     admin: { type: Schema.Types.ObjectId, ref: "users", autopopulate: true },
   },
