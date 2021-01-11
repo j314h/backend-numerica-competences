@@ -49,6 +49,7 @@ router.delete("/user/:id", verifUserConnect, verifUserAccesAmin, userController.
 //update or create companies
 router.post("/update-company-user", verifUserConnect, verifUserAccesReferent, userController.updateCompanyForUser);
 router.post("/create-company", verifUserConnect, verifUserAccesAmin, globalController.createCompany);
+//router.post("/companies", verifUserConnect, verifUserAccesAmin, globalController.getAllCompanies);
 
 //roads for globals data
 router.get("/roles", verifUserConnect, verifUserAccesAmin, globalController.getAllRoles);
@@ -57,6 +58,8 @@ router.get("/states", verifUserConnect, verifUserAccesAmin, globalController.get
 //checkconnected
 router.get("/auth/verification", verifUserConnect, authController.redirectConnect);
 
+//get all image for app
+router.get("/files-i", uploadController.allFilesImg);
 //upload files app (img)
 router.post(
   "/file/logo-numerica",
@@ -100,30 +103,6 @@ router.post(
   upload.single("logoCloseUpdateElement"),
   uploadController.uploadlogoCloseUpdateElement
 );
-router.post(
-  "/file/logo-setting",
-  verifUserConnect,
-  verifUserAccesRoot,
-  upload.single("logoSetting"),
-  uploadController.uploadlogoSetting
-);
-router.post(
-  "/file/logo-deconnect",
-  verifUserConnect,
-  verifUserAccesRoot,
-  upload.single("logoDeconnect"),
-  uploadController.uploadlogoDeconnect
-);
-router.post(
-  "/file/logo-dashbord",
-  verifUserConnect,
-  verifUserAccesRoot,
-  upload.single("logoDashbord"),
-  uploadController.uploadlogoDashbord
-);
-
-//get all image for app
-router.get("/files-i", uploadController.allFilesImg);
 
 //param app of color
 router.get("/themes-colors", themesColorsController.getAllThemesColors); //no active

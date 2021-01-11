@@ -31,32 +31,38 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 
 ## Roads
 
-| ROADS                                     | libelle                  | settings for request                         | type request |
-| ----------------------------------------- | ------------------------ | -------------------------------------------- | ------------ |
-| GLOBAL                                    | -                        | -                                            | -            |
-| _Get all roles_                           | `/roles`                 | -                                            | GET          |
-| _Get all states_                          | `/states`                | -                                            | GET          |
-| _recover the token from the api rome_     | `/access-token-api-rome` | parameter in model APIRome.js                | GET          |
-|                                           |                          |                                              |              |
-| USER                                      | -                        | -                                            | -            |
-| _Disconnect user_                         | `/sign-out`              | -                                            | GET          |
-| _Connect user_                            | `/sign-in`               | email, password                              | POST         |
-| _Create user (no connection to creation)_ | `/sign-up`               | firstName, lastName, email, role is required | POST         |
-| _Get user with id_                        | `/user/:id`              | \_id => user                                 | GET          |
-| _Delete user_                             | `/user/:id`              | \_id => user                                 | Delete       |
-| _Update state this user_                  | `/changestate-user`      | idUser, idState                              | Patch        |
-| _Update role this user_                   | `/changerole-user`       | idUser, idRole                               | Patch        |
-|                                           |                          |                                              |              |
-| UPLOAD                                    | -                        | -                                            | -            |
-| _upload img log numerica_                 | `/file/logo-numerica`    | FormData with clef "logoNumerica"            | POST         |
-| _get all files img_                       | `/files-i`               | -                                            | GET          |
-| _upload img log identifiant_              | `/file/logo-identifiant` | FormData with clef "logoIdentifiant"         | POST         |
-| _upload img log menu_                     | `/file/logo-menu`        | FormData with clef "logoMenu"                | POST         |
-|                                           |                          |                                              |              |
-| THEMECOLOR                                | -                        | -                                            | -            |
-| _choice mode dark or not_                 | `cu-theme-color`         | name                                         | POST         |
-| _get all themeColors_                     | `themes-colors`          | -                                            | GET          |
-|                                           |                          |                                              |              |
+| ROADS                                        | libelle                           | settings for request                         | type request |
+| -------------------------------------------- | --------------------------------- | -------------------------------------------- | ------------ |
+| GLOBAL                                       | -                                 | -                                            | -            |
+| _Get all roles_                              | `/roles`                          | -                                            | GET          |
+| _Get all states_                             | `/states`                         | -                                            | GET          |
+| _recover the token from the api rome_        | `/access-token-api-rome`          | parameter in model APIRome.js                | GET          |
+| _Create company and create sectors_          | `/create-company`                 | object company and array of sector           | POST         |
+| _Update company's user_                      | `/update-company-user `           | object company and sector                    | POST         |
+| _Check user is connect_                      | `/auth/verification`              | jwt                                          | GET          |
+|                                              |                                   |                                              |              |
+| USER                                         | -                                 | -                                            | -            |
+| _Disconnect user_                            | `/sign-out`                       | -                                            | GET          |
+| _Connect user_                               | `/sign-in`                        | email, password                              | POST         |
+| _Create user (no connection to creation)_    | `/sign-up`                        | firstName, lastName, email, role is required | POST         |
+| _Get user with id_                           | `/user/:id`                       | \_id => user                                 | GET          |
+| _Delete user_                                | `/user/:id`                       | \_id => user                                 | Delete       |
+| _Update state this user_                     | `/changestate-user`               | idUser, idState                              | Patch        |
+| _Update role this user_                      | `/changerole-user`                | idUser, idRole                               | Patch        |
+|                                              |                                   |                                              |              |
+| UPLOAD                                       | -                                 | -                                            | -            |
+| _get all files img_                          | `/files-i`                        | -                                            | GET          |
+| _upload img log numerica_                    | `/file/logo-numerica`             | FormData with clef "logoNumerica"            | POST         |
+| _upload img log identifiant_                 | `/file/logo-identifiant`          | FormData with clef "logoIdentifiant"         | POST         |
+| _upload img log menu_                        | `/file/logo-menu`                 | FormData with clef "logoMenu"                | POST         |
+| _upload img logo numerica footer_            | `/file/logo-numerica-footer`      | FormData with clef "logoNumericaFooter"      | POST         |
+| _upload logo pencil for update element_      | `/file/logo-update-element`       | FormData with clef "logoUpdateElement"       | POST         |
+| _upload logo cross for close update element_ | `/file/logo-close-update-element` | FormData with clef "logoCloseUpdateElement"  | POST         |
+|                                              |                                   |                                              |              |
+| THEMECOLOR                                   | -                                 | -                                            | -            |
+| _choice mode dark or not_                    | `cu-theme-color`                  | name                                         | POST         |
+| _get all themeColors_                        | `themes-colors`                   | -                                            | GET          |
+|                                              |                                   |                                              |              |
 
 ## Features
 
