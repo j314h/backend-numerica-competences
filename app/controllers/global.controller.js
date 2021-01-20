@@ -1,4 +1,4 @@
-const { Roles, States, Companies, Sectors } = require("../models");
+const { Roles, States, Companies, Sectors, Users } = require("../models");
 
 const globalController = {
   //get all states
@@ -43,6 +43,26 @@ const globalController = {
       res.status(200).end();
     } catch (e) {
       req.errorMessage = "Error create company";
+      next(e);
+    }
+  },
+
+  //get all companies and sector of companies recover and référent user in companies
+  getAllCompanies: async (req, res, next) => {
+    try {
+      const tabReferent = [];
+      const companies = await Companies.find({ admin: req.user._id });
+      if (companies.name === "Error") throw new Error("Les companies n'ont pas pu etre récuperées");
+      for (const company of companies) {
+        const referent = await Users.find({ company: company._id });
+        const newReferent = referent.find((el) => el.role.libelle === "référent" || el.role.libelle === "root");
+        if (newReferent) {
+          tabReferent.push(newReferent);
+        }
+      }
+      res.status(200).json({ companies, tabReferent });
+    } catch (e) {
+      req.errorMessage = "Error get all companies";
       next(e);
     }
   },
