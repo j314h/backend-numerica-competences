@@ -66,6 +66,17 @@ const globalController = {
       next(e);
     }
   },
+
+  //get company
+  getCompany: async (req, res, next) => {
+    try {
+      const company = await Companies.findById({ _id: req.params.id });
+      res.status(200).json(company);
+    } catch (e) {
+      req.errorMessage = "Error get company";
+      next(e);
+    }
+  },
 };
 
 module.exports = globalController;
