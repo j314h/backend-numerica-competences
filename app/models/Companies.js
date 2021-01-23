@@ -10,7 +10,7 @@ const companySchema = Schema(
     phoneNumber: String,
     address: { type: Object, street: String, postCode: String, city: { type: String }, required: true, unique: true },
     state: { type: Schema.Types.ObjectId, ref: "states", autopopulate: true },
-    admin: { type: Schema.Types.ObjectId, ref: "users", autopopulate: true },
+    admin: { type: Schema.Types.ObjectId, ref: "users", required: true },
   },
   {
     timestamps: true,

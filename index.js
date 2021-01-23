@@ -27,7 +27,7 @@ require("./app/middlewares/jwt.conf");
 require("./app/middlewares/verifyAccess.conf");
 
 //call router app
-const route = require("./app/router");
+const route = require("./app/routers/router");
 
 //post => body
 //parse json

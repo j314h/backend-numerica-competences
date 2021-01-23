@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
 const userSchema = Schema(
@@ -12,7 +11,6 @@ const userSchema = Schema(
       lastName: { type: String, required: true },
     },
     address: {
-      numberStreet: { type: String },
       street: { type: String },
       postCode: { type: String },
       city: { type: String },
@@ -24,9 +22,9 @@ const userSchema = Schema(
     activated: { type: Boolean, default: false },
     phoneNumber: String,
     registerNumber: String,
-    dateOfBird: String,
+    dateOfBird: Date,
     role: { type: Schema.Types.ObjectId, ref: "roles", required: true, autopopulate: true },
-    company: { type: Schema.Types.ObjectId, autopopulate: true, ref: "companies" },
+    company: { type: Schema.Types.ObjectId, ref: "companies" },
     themeColor: {
       type: Schema.Types.ObjectId,
       autopopulate: true,
@@ -34,12 +32,12 @@ const userSchema = Schema(
       default: "5fe7abf1c0829974e2fae222", // mode normal
     },
     trade: { type: Schema.Types.ObjectId, autopopulate: true, ref: "trades" },
-    leader: { type: Schema.Types.ObjectId, autopopulate: true, ref: "users" },
+    leader: { type: Schema.Types.ObjectId, ref: "users" },
     sector: { type: Schema.Types.ObjectId, autopopulate: true, ref: "sectors" },
     state: {
       type: Schema.Types.ObjectId,
-      autopopulate: true,
       required: true,
+      autopopulate: true,
       ref: "states",
       default: "5fd1e209d9419ef54a0a1bc0", // state actif
     },
@@ -51,21 +49,6 @@ const userSchema = Schema(
 
 //see data for data ref in shemas
 userSchema.plugin(require("mongoose-autopopulate"));
-
-//hash password
-userSchema.statics.hashPassword = async (pwd) => {
-  try {
-    const salt = await bcrypt.genSalt(15);
-    return bcrypt.hash(pwd, salt);
-  } catch (error) {
-    throw error;
-  }
-};
-
-//compare hash password
-userSchema.methods.comparePassword = async function (password) {
-  return bcrypt.compare(password, this.pwd);
-};
 
 const Users = mongoose.model("users", userSchema);
 

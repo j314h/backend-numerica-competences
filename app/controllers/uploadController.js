@@ -1,5 +1,5 @@
 const { Files } = require("../models");
-const { changeOrCreateValueForFile } = require("../queries/global.queries");
+const { changeOrCreateValueForFile } = require("../queries/fileQueries");
 
 const uploadController = {
   //get all files img

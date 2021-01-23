@@ -1,5 +1,5 @@
 const multer = require("multer");
-const { changeNameFileInFolder } = require("../queries/global.queries");
+const { changeNameFileInFolder } = require("../queries/fileQueries");
 const fs = require("fs");
 
 //type of file accepted
