@@ -31,38 +31,55 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 
 ## Roads
 
-| ROADS                                        | libelle                           | settings for request                         | type request |
-| -------------------------------------------- | --------------------------------- | -------------------------------------------- | ------------ |
-| GLOBAL                                       | -                                 | -                                            | -            |
-| _Get all roles_                              | `/roles`                          | -                                            | GET          |
-| _Get all states_                             | `/states`                         | -                                            | GET          |
-| _recover the token from the api rome_        | `/access-token-api-rome`          | parameter in model APIRome.js                | GET          |
-| _Create company and create sectors_          | `/create-company`                 | object company and array of sector           | POST         |
-| _Update company's user_                      | `/update-company-user `           | object company and sector                    | POST         |
-| _Check user is connect_                      | `/auth/verification`              | jwt                                          | GET          |
-|                                              |                                   |                                              |              |
-| USER                                         | -                                 | -                                            | -            |
-| _Disconnect user_                            | `/sign-out`                       | -                                            | GET          |
-| _Connect user_                               | `/sign-in`                        | email, password                              | POST         |
-| _Create user (no connection to creation)_    | `/sign-up`                        | firstName, lastName, email, role is required | POST         |
-| _Get user with id_                           | `/user/:id`                       | \_id => user                                 | GET          |
-| _Delete user_                                | `/user/:id`                       | \_id => user                                 | Delete       |
-| _Update state this user_                     | `/changestate-user`               | idUser, idState                              | Patch        |
-| _Update role this user_                      | `/changerole-user`                | idUser, idRole                               | Patch        |
-|                                              |                                   |                                              |              |
-| UPLOAD                                       | -                                 | -                                            | -            |
-| _get all files img_                          | `/files-i`                        | -                                            | GET          |
-| _upload img log numerica_                    | `/file/logo-numerica`             | FormData with clef "logoNumerica"            | POST         |
-| _upload img log identifiant_                 | `/file/logo-identifiant`          | FormData with clef "logoIdentifiant"         | POST         |
-| _upload img log menu_                        | `/file/logo-menu`                 | FormData with clef "logoMenu"                | POST         |
-| _upload img logo numerica footer_            | `/file/logo-numerica-footer`      | FormData with clef "logoNumericaFooter"      | POST         |
-| _upload logo pencil for update element_      | `/file/logo-update-element`       | FormData with clef "logoUpdateElement"       | POST         |
-| _upload logo cross for close update element_ | `/file/logo-close-update-element` | FormData with clef "logoCloseUpdateElement"  | POST         |
-|                                              |                                   |                                              |              |
-| THEMECOLOR                                   | -                                 | -                                            | -            |
-| _choice mode dark or not_                    | `cu-theme-color`                  | name                                         | POST         |
-| _get all themeColors_                        | `themes-colors`                   | -                                            | GET          |
-|                                              |                                   |                                              |              |
+| ROADS                             | libelle                                 | settings for request                                 | type request |
+| --------------------------------- | --------------------------------------- | ---------------------------------------------------- | ------------ |
+| _userRouter_                      |                                         |                                                      |              |
+| `/user/:id`                       | get user                                | `_id:` `string`of user in url                        | GET          |
+| `/user-create `                   | create user                             | `data:` `object` with info form create company       | POST         |
+| `/confirme-account`               | validate account                        | `password:` `string ` password user                  | POST         |
+|                                   |                                         | `dataCryptedFormatUrl:` `string` key crypted         |              |
+| `/user-update`                    | update user                             | `oldPassword:` `string` old password user            | POST         |
+|                                   |                                         | `password:` `string` new password user               |              |
+|                                   |                                         | `_id:` `string` id of user update                    |              |
+|                                   |                                         | `data:` `object` with info update user               |              |
+| `/user-delete/:id`                | delete user                             | `_id:` `string` of user in url                       | DELETE       |
+|                                   |                                         |                                                      |              |
+| _uploadRouter_                    |                                         |                                                      |              |
+| `/files-i`                        | get files                               | -                                                    | GET          |
+| `/file/logo-numerica`             | update logo numerica                    | `data:` `FormData` file logo numerica                | POST         |
+| `/file/logo-identifiant`          | update logo identifiant                 | `data:` `FormData` file logo identifiant             | POST         |
+| `/file/logo-menu`                 | update logo menu                        | `data:` `FormData` file logo menu                    | POST         |
+| `/file/logo-numerica-footer`      | update logo numerica footer             | `data:` `FormData` file logo numerica footer         | POST         |
+| `/file/logo-update-element`       | update logo update element              | `data:` `FormData` file logo update element          | POST         |
+| `/file/logo-close-update-element` | update logo close update element        | `data:` `FormData` file logo close update element    | POST         |
+|                                   |                                         |                                                      |              |
+| _themeColorRouter_                |                                         |                                                      |              |
+| `/themes-colors`                  | get themes colors                       | - no active                                          | GET          |
+| `/cu-theme-color`                 | active or not dark mode                 | `name:` `string` name of theme color                 | POST         |
+|                                   |                                         |                                                      |              |
+| _stateRouter_                     |                                         |                                                      |              |
+| `/states`                         | get states                              | -                                                    | GET          |
+|                                   |                                         |                                                      |              |
+| _sectorRouter_                    |                                         |                                                      |              |
+| `/sectors/:id`                    | get sector of company                   | `_id:` `string` of company in url                    | GET          |
+|                                   |                                         |                                                      |              |
+| _roleRouter_                      |                                         |                                                      |              |
+| `/roles`                          | get roles                               | -                                                    | GET          |
+|                                   |                                         |                                                      |              |
+| _companiesRouter_                 |                                         |                                                      |              |
+| `/companies-admin`                | get companies of user connected (admin) | - (use `req.user.id` for selected companies)         | GET          |
+| `/company/:id`                    | get company                             | `_id:` `string` of company in url                    | GET          |
+| `/company-create`                 | create company                          | `company:` `object` with info company                | POST         |
+|                                   |                                         | `sectors:` `array of string` with sectors of company |              |
+| `/company-update`                 | update company                          | `data:` `object` with info company                   | POST         |
+| `company/:id`                     | delete company                          | `_id:` of company in url                             | DELETE       |
+|                                   |                                         |                                                      |              |
+| _authRouter_                      |                                         |                                                      |              |
+| `/sign-in`                        | connect user                            | `email:` `string` of user connect                    | POST         |
+|                                   |                                         | `password:` `string` of user connect                 |              |
+| `/sign-out`                       | disconnect user                         | - (delete jwt of user)                               | GET          |
+| `/access-token-api-rome`          | access of api rome work                 | - (info connect in api)                              | GET          |
+|                                   |                                         |                                                      |              |
 
 ## Features
 

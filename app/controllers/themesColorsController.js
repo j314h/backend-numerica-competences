@@ -18,7 +18,7 @@ const themesColorsController = {
         { useFindAndModify: false, new: true, upsert: true }
       );
       if (!user) throw new Error("The user received an error during his color update");
-
+      user.pwd = "";
       res.status(200).json(user);
     } catch (e) {
       req.errorMessage = "An error occurred while updating the colors";
