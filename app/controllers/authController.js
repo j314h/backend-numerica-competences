@@ -39,6 +39,20 @@ const authController = {
     }
   },
 
+  //verification after reload app return user
+  verificationConnect: async (req, res, next) => {
+    try {
+      const user = await Users.findById(req.user._id);
+      req.login(user);
+      user.pwd = "";
+      res.status(200).json(user);
+    } catch (e) {
+      req.logout();
+      req.errorMessage = "Error verification user connected";
+      next(e);
+    }
+  },
+
   //disconnect user return object connexion false
   signOut: (req, res, next) => {
     try {

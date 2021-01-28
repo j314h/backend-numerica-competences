@@ -13,6 +13,8 @@ const {
 
 //get user with id
 userRouter.get("/user/:id", verifUserConnect, verifUserAccesReferent, userController.getUser);
+//get users for company selected of admin :id => _id company
+userRouter.get("/users/:id", verifUserConnect, verifUserAccesReferent, userController.getUsersCompanySelectedOfAdmin);
 //create user
 userRouter.post(
   "/user-create",

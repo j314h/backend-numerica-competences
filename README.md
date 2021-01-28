@@ -79,6 +79,7 @@ _Project created and monitored by Cécile Maillard-Salin, David Caignaert and Jo
 |                                   |                                         | `password:` `string` of user connect                 |              |
 | `/sign-out`                       | disconnect user                         | - (delete jwt of user)                               | GET          |
 | `/access-token-api-rome`          | access of api rome work                 | - (info connect in api)                              | GET          |
+| `/verification-connect`           | verification user connected             | - (info of user in req)                              | GET          |
 |                                   |                                         |                                                      |              |
 
 ## Features

@@ -7,6 +7,6 @@ const roleController = require("../controllers/roleController");
 const { verifUserConnect, verifUserAccesAmin } = require("../middlewares/verifyAccess.conf");
 
 //get roles
-roleRouter.get("/roles", verifUserConnect, verifUserAccesAmin, roleController.getAllRoles);
+roleRouter.get("/roles", verifUserConnect, /*verifUserAccesAmin,*/ roleController.getAllRoles);
 
 module.exports = roleRouter;

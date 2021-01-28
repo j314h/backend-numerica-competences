@@ -19,6 +19,16 @@ const userController = {
     }
   },
 
+  getUsersCompanySelectedOfAdmin: async (req, res, next) => {
+    try {
+      const users = await Users.find({ company: req.params.id });
+      res.status(200).json(users);
+    } catch (e) {
+      req.errorMessage = "Error get user";
+      next(e);
+    }
+  },
+
   //create users numerica competence
   //user is create but not validate
   createUser: async (req, res, next) => {
@@ -101,13 +111,6 @@ const userController = {
         //crypt new password and add in new user
         const salt = await Bcrypt.genSalt(15);
         req.body.data.pwd = await Bcrypt.hash(req.body.password, salt);
-      }
-
-      //a changer car il faut enregistrer l'id de role depuis le front et le renvoyer au back
-      //recover role selected and add in new user
-      if (req.body.data.role) {
-        const role = await Roles.findOne({ libelle: req.body.data.role });
-        req.body.data.role = role._id;
       }
 
       //update user
