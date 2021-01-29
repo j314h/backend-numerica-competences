@@ -22,7 +22,6 @@ const userSchema = Schema(
     activated: { type: Boolean, default: false },
     phoneNumber: String,
     registerNumber: String,
-    dateOfBird: Date,
     role: { type: Schema.Types.ObjectId, ref: "roles", required: true, autopopulate: true },
     company: { type: Schema.Types.ObjectId, ref: "companies" },
     themeColor: {

@@ -9,6 +9,7 @@ const roleRouter = require("./roleRouter");
 const sectorRouter = require("./sectorRouter");
 const uploadRouter = require("./uploadRouter");
 const themeColorRouter = require("./themeColorRouter");
+const tradeRouter = require("./tradeRouter");
 
 //authentification user
 router.use(authRouter);
@@ -20,6 +21,8 @@ router.use(companiesRouter);
 router.use(stateRouter);
 //role roads
 router.use(roleRouter);
+//role trades
+router.use(tradeRouter);
 //sector roads
 router.use(sectorRouter);
 //files roads

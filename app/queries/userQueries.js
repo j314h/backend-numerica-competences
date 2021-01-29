@@ -4,24 +4,23 @@ const { v4: uuidv4 } = require("uuid");
 //create user instance
 exports.createUser = (req) => {
   const newUser = new Users({
-    civility: req.body.civ,
+    civility: req.body.civility,
     name: {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      firstName: req.body.name.firstName,
+      lastName: req.body.name.lastName,
     },
     address: {
-      street: req.body.street,
-      postCode: req.body.postCode,
-      city: req.body.city,
+      street: req.body.address.street,
+      postCode: req.body.address.postCode,
+      city: req.body.address.city,
     },
-    pwd: req.body.password, //here this password is not define, it will be defined in the validation route of the user
+    pwd: req.body.pwd, //here this password is not define, it will be defined in the validation route of the user
     email: req.body.email,
     emailToken: uuidv4(), //token pour verification account
     tokenEmailDelai: Date.now() + Math.floor(1000 * 60 * 60 * 48), //delais for token verification account
     //activated: value default is false
     phoneNumber: req.body.phoneNumber,
     registerNumber: req.body.registerNumber,
-    dateOfBird: req.body.dateOfBird,
     role: req.body.role,
     company: req.body.company,
     //themeColor: value default is _id basic mode
