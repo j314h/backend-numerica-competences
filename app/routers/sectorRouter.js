@@ -12,5 +12,7 @@ sectorRouter.get("/sectors/:id", verifUserConnect, /*verifUserAccesAmin,*/ secto
 sectorRouter.post("/sectors-create", verifUserConnect, /*verifUserAccesAmin,*/ sectorController.createSectors);
 //update sectors
 sectorRouter.post("/sectors-update", verifUserConnect, /*verifUserAccesAmin,*/ sectorController.updateSectors);
+//delete sector
+sectorRouter.delete("/sector/:id", verifUserConnect, /*verifUserAccesAmin,*/ sectorController.deleteSector);
 
 module.exports = sectorRouter;
