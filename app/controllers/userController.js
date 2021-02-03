@@ -1,7 +1,7 @@
 const { Users, Roles } = require("../models");
 const { createUser, testUserForDelete } = require("../queries/userQueries");
 const email = require("../emails/Email");
-const secret = "37&3%ejhjjhb&d$c4-d$mlidfdf#8ghg&9-4%yut9&0dfg#9-8%lk&hg2e#b-5&d7hjbde%e&fdf0cfdf81#18";
+const secret = process.env.SECRET;
 const Crypto = require("crypto-js");
 const Bcrypt = require("bcrypt");
 
@@ -53,7 +53,7 @@ const userController = {
             userName: `${user.name.firstName.charAt(0).toUpperCase() + user.name.firstName.substr(1)} ${
               user.name.lastName.charAt(0).toUpperCase() + user.name.lastName.substr(1)
             }`,
-            url: `http://localhost:8080/user-verify-create?data=${dataCryptedFormatUrl}`,
+            url: `${process.env.URL}/user-verify-create?data=${dataCryptedFormatUrl}`,
             email: user.email,
           },
         });

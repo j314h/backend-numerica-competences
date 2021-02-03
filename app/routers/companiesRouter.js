@@ -19,6 +19,6 @@ companiesRouter.post("/company-create", verifUserConnect, /*verifUserAccesAmin,*
 //update company
 companiesRouter.post("/company-update", verifUserConnect, verifUserAccesReferent, companiesController.updateCompany);
 //delete company
-companiesRouter.delete("company/:id", verifUserConnect, /*verifUserAccesAmin,*/ companiesController.deleteCompany);
+companiesRouter.delete("/company/:id", verifUserConnect, /*verifUserAccesAmin,*/ companiesController.deleteCompany);
 
 module.exports = companiesRouter;

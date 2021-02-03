@@ -35,15 +35,16 @@ exports.createUser = (req) => {
 //test role user for delete others user
 exports.testUserForDelete = (user, req) => {
   //user not found throw error
-  if (!user) throw new Error("User no found");
+  if (!user) throw new Error("Utilisateur inconnu");
 
   //user role => root throw error
-  if (user.role.libelle === "root") throw new Error("Cannot delete a user with the root role");
+  if (user.role.libelle === "root") throw new Error("Impossible de supprimer l'utilisateur root");
 
   //user is not archivé throw erreur
-  if (user.state.libelle !== "archivé") throw new Error('Cannot delete a user who does not have the "archived" status');
+  if (user.state.libelle !== "archivé")
+    throw new Error("Impossible de supprimer un utilisateur si il n'est pas archivé");
 
   //user role => administrteur && user connected is not role => root throw error
   if (user.role.libelle === "administrateur" && req.user.role.libelle === "administrateur")
-    throw new Error("You do not have permission to remove an administrator");
+    throw new Error("Vous n'avez pas les droit pour supprimer un utilisateur administrateur");
 };

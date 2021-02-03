@@ -1,7 +1,7 @@
-const secret = '37&3%ejhjjhb&d$c4-d$mlidfdf#8ghg&9-4%yut9&0dfg#9-8%lk&hg2e#b-5&d7hjbde%e&fdf0cfdf81#18';
-const { app } = require('../../index');
-const jwt = require('jsonwebtoken');
-const { Users } = require('../models');
+const secret = process.env.SECRET;
+const { app } = require("../../index");
+const jwt = require("jsonwebtoken");
+const { Users } = require("../models");
 
 //param token
 const createJwtToken = ({ user = null, id = null }) => {
@@ -27,10 +27,10 @@ const checkExpiredToken = (token, res) => {
     return token;
   } else if (nowSec > token.exp && nowSec - token.exp < 60 * 60 * 24) {
     const refreshToken = createJwtToken({ id: token.sub });
-    res.cookie('jwt', refreshToken);
+    res.cookie("jwt", refreshToken);
     return jwt.verify(refreshToken, secret, { ignoreExpiration: true });
   } else {
-    throw new Error('Token is not valid');
+    throw new Error("Token non valide");
   }
 };
 
@@ -45,8 +45,8 @@ const extractUserFromToken = async (req, res, next) => {
       req.user = user;
       next();
     } catch (error) {
-      res.clearCookie('jwt');
-      req.errorMessage = 'Token is not valid';
+      res.clearCookie("jwt");
+      req.errorMessage = "Token non valide";
       next(e);
     }
   } else {
@@ -57,10 +57,10 @@ const extractUserFromToken = async (req, res, next) => {
 //create feature for loggout and login and authenticate
 const addJwtFeatures = (req, res, next) => {
   req.isAuthenticated = () => !!req.user;
-  req.logout = () => res.clearCookie('jwt');
+  req.logout = () => res.clearCookie("jwt");
   req.login = (user) => {
     const token = createJwtToken({ user });
-    res.cookie('jwt', token);
+    res.cookie("jwt", token);
   };
   next();
 };

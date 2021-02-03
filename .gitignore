@@ -9,7 +9,7 @@ package-lock.*
 api.key
 
 /dist
-
+/images
 
 # local env files
 .env.local

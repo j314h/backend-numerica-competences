@@ -1,4 +1,13 @@
-const { Companies, Users, Sectors } = require("../models");
+const {
+  Companies,
+  Users,
+  Sectors,
+  Interviews,
+  Trades,
+  BusinessRequiredSkills,
+  BusinessAcquiredSkills,
+  LevelSkills,
+} = require("../models");
 
 const companiesController = {
   //get all companies and sector of companies recover and référent user in companies
@@ -78,13 +87,34 @@ const companiesController = {
   //delete company with id in url
   deleteCompany: async (req, res, next) => {
     try {
+      //recover user of company delete and if user exist throw error
+      const users = await Users.find({ company: req.params.id });
+      if (users.length > 0)
+        throw new Error("L'entreprise contient encore des salariés, il est impossible de la supprimer");
+
       //recover companie selected for test
       const company = await Companies.findById(req.params.id);
       if (company.state.libelle !== "archivé")
-        throw new Error("Impossible de supprimer cette entreprise: state is not archivé");
+        throw new Error("Impossible de supprimer cette entreprise: l'état doit être archivé");
+
+      //delete all entity in relationship with company delete
+      await Sectors.deleteMany({ company: { _id: req.params.id } });
+      const trades = await Trades.find({ company: { _id: req.params.id } });
+      for (const trade of trades) {
+        await BusinessRequiredSkills.deleteMany({ trade: { _id: trade._id } });
+      }
+      await Trades.deleteMany({ company: { _id: req.params.id } });
+
+      //this is entyti for delete user and to delete user you have to delete the entities below
+      // await Users.deleteMany({ company: req.params.id })
+      // await Interviews.deleteMany({ company: { _id: req.params.id } });
+      // await BusinessAcquiredSkills.deleteMany({ company: { _id: req.params.id } });
+      // await LevelSkills.deleteMany({ company: { _id: req.params.id } });
 
       //delete company if company is archived
       await Companies.findByIdAndDelete(req.params.id);
+
+      res.status(200).json({ delete: true });
     } catch (e) {
       req.errorMessage = "Error delete company";
       next(e);

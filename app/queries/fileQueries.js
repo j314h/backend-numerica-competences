@@ -9,7 +9,7 @@ exports.changeOrCreateValueForFile = async (req) => {
       { name: req.file.fieldname, fieldName: req.file.filename, src: req.file.path },
       { useFindAndModify: false, new: true, upsert: true }
     );
-    if (!file) throw new Error(`Unable to update this file, an error has occurred`);
+    if (!file) throw new Error(`Impossible de modifier l'image`);
     return file;
   } catch (e) {
     return e;
@@ -21,7 +21,7 @@ exports.changeOrCreateValueForFile = async (req) => {
 exports.changeNameFileInFolder = async (file) => {
   try {
     const fileNew = await Files.findOne({ name: file.fieldname });
-    if (!fileNew) throw new Error("file is not found");
+    if (!fileNew) throw new Error("Impossible de trouver l'image");
     return fileNew;
   } catch (e) {
     return e;

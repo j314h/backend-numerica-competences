@@ -9,7 +9,7 @@ const extension = ["image/jpeg", "image/png", "image/svg+xml", "image/jpg"];
 //if format file is not good return error
 function fileFilter(req, file, cb) {
   if (!extension.includes(file.mimetype)) {
-    return cb(new Error("Your file is not in the correct format"), false);
+    return cb(new Error("Le fichier n'est pas au bon format"), false);
   }
   cb(null, true);
 }
@@ -26,7 +26,7 @@ exports.upload = multer({
       try {
         //file is sup of 1Mo return error
         if (req.headers["content-length"] > 1000000) {
-          return cb(new Error("Your file exceeds 1Mo"), false);
+          return cb(new Error("Le fichier est supérieur à 1Mo"), false);
         }
         //test if file exist and supprime file for save new file
         const fileCurrent = await changeNameFileInFolder(file);
@@ -48,7 +48,7 @@ exports.upload = multer({
           cb(null, `${file.fieldname}-${Date.now()}.${tab[1]}`);
         }
       } catch (error) {
-        cb(new Error("An error occurred during recording"), false);
+        cb(new Error("Une Erreur est survenue pendant l'enregistrement"), false);
       }
     },
   }),
