@@ -9,7 +9,11 @@ package-lock.*
 api.key
 
 /dist
-/images
+*.svg
+*.png
+*.jpeg
+*.pdf
+*.jpg
 
 # local env files
 .env.local
