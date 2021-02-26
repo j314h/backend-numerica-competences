@@ -5,6 +5,7 @@ const businessRequiredSkillSchema = Schema(
   {
     libelle: String,
     description: String,
+    type: String,
     ponderation: Number,
     level: { type: Schema.Types.ObjectId, ref: "level_skills", autopopulate: true },
     trade: { type: Schema.Types.ObjectId, ref: "trades", autopopulate: true },
